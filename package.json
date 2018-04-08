@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SEQUELIZE_CONNECT=models/sequelize-postgres-heroku.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=https://obscure-waters-88720.herokuapp.com/ node ./bin/www",
-    "start-local": "SEQUELIZE_CONNECT=models/sequelize-postgres.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=http://localhost:3333 node ./bin/www",
+    "start": "SEQUELIZE_CONNECT=models/sequelize-postgres-heroku.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=https://obscure-waters-88720.herokuapp.com/ node ./app",
+    "start-local": "SEQUELIZE_CONNECT=models/sequelize-postgres.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=http://localhost:3333 node ./app",
     "postinstall": "./node_modules/bower/bin/bower install",
     "bootstrapsetup": "cd bower_components/bootstrap && npm install && npm install grunt-cli ",
     "buildbootstrap": "cp variables.less bower_components/bootstrap/less && cd bower_components/bootstrap && grunt",
-    "start-fs": "NOTES_MODEL=models/notes-fs node ./bin/www",
-    "server1": "PORT=3001 node ./bin/www",
-    "server2": "PORT=3002 node ./bin/www",
+    "start-fs": "NOTES_MODEL=models/notes-fs node ./app",
+    "server1": "PORT=3001 node ./app",
+    "server2": "PORT=3002 node ./app",
     "bower": "./node_modules/bower/bin/bower"
   },
   "engines": {
@@ -29,11 +29,13 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "passport.socketio": "^3.7.0",
     "pg": "^6.4.1",
     "pg-hstore": "^2.3.2",
     "restify": "^4.3.2",
     "sequelize": "^3.32.1",
-    "session-file-store": "^0.2.2"
+    "session-file-store": "^0.2.2",
+    "socket.io": "^1.7.4"
   },
   "devDependencies": {
     "bower": "^1.8.2"
