@@ -67,8 +67,8 @@ app.use(session({
   store: sessionStore,
   secret: sessionSecret,
   key: sessionCookie,
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false
 }));
 users.initPassport(app);
 
@@ -159,5 +159,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  log('Listening on ' + bind);
+    debug('Listening on ' + bind);
 }
