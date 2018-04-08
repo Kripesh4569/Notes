@@ -1,0 +1,7 @@
+dbname: notes
+username: kripesh
+password: '4569'
+params:
+  host: localhost
+  port: 5432
+  dialect: postgres

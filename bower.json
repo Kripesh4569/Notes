@@ -1,0 +1,11 @@
+{
+  "name": "responsive-design-chap06",
+  "description": "This is for the purpose of implementing responsive design for notes app.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.6"
+  }
+}

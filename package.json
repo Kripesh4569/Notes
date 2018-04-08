@@ -1,0 +1,37 @@
+{
+  "name": "notes",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "SEQUELIZE_CONNECT=models/sequelize-postgres.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=http://localhost:3333 node ./bin/www",
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "bootstrapsetup": "cd bower_components/bootstrap && npm install && npm install grunt-cli ",
+    "buildbootstrap": "cp variables.less bower_components/bootstrap/less && cd bower_components/bootstrap && grunt",
+    "start-fs": "NOTES_MODEL=models/notes-fs node ./bin/www",
+    "server1": "PORT=3001 node ./bin/www",
+    "server2": "PORT=3002 node ./bin/www",
+    "bower": "./node_modules/bower/bin/bower"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "file-stream-rotator": "^0.2.1",
+    "fs-extra": "^5.0.0",
+    "http-errors": "~1.6.2",
+    "js-yaml": "^3.11.0",
+    "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^6.4.1",
+    "pg-hstore": "^2.3.2",
+    "restify": "^4.3.2",
+    "sequelize": "^3.32.1",
+    "session-file-store": "^0.2.2"
+  },
+  "devDependencies": {
+    "bower": "^1.8.2"
+  }
+}
