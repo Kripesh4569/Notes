@@ -1,0 +1,7 @@
+dbname: d8gvrkmugj7q71
+username: efdfcnfmlaoyjv
+password: '848e0a10beeb0b118868295437e5631759fce409d714aae38a1a601ac57eb188'
+params:
+  host: ec2-54-221-192-231.compute-1.amazonaws.com
+  port: 5432
+  dialect: postgres

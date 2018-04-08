@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SEQUELIZE_CONNECT=models/sequelize-postgres.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=https://obscure-waters-88720.herokuapp.com/ node ./bin/www",
+    "start": "SEQUELIZE_CONNECT=models/sequelize-postgres-heroku.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=https://obscure-waters-88720.herokuapp.com/ node ./bin/www",
     "start-local": "SEQUELIZE_CONNECT=models/sequelize-postgres.yaml NOTES_MODEL=models/notes-sequelize USERS_MODEL=models/users-rest USER_SERVICE_URL=http://localhost:3333 node ./bin/www",
     "postinstall": "./node_modules/bower/bin/bower install",
     "bootstrapsetup": "cd bower_components/bootstrap && npm install && npm install grunt-cli ",
