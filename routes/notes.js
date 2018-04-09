@@ -8,6 +8,7 @@ var usersRouter = require('./users');
 
 const log = require('debug')('notes:router-notes');
 const error = require('debug')('notes:error');
+const messagesModel = require('../models/messages-sequelize');
 
 // Add Note.
 router.get('/add', usersRouter.ensureAuthenticated, (req, res, next) => {
@@ -123,4 +124,44 @@ module.exports.socketio = function (io) {
             socket.emit('notedestroy', data);
         });
     });
+
+    nspView.on('connection', function (socket) {
+        // 'cb' is a function sent from the browser, to which we
+        // send the messages for the named note.
+        socket.on('getnotemessages', (namespace, cb) => {
+            messagesModel.recentMessages(namespace)
+                .then(cb)
+                .catch(err => console.error(err.stack));
+        });
+    });
+    
+    messagesModel.on('newmessage', newmsg => {
+        forNoteViewClients(socket => {
+            socket.emit('newmessage', newmsg);
+        });
+    });
+    messagesModel.on('destroymessage', data => {
+        forNoteViewClients(socket => {
+            socket.emit('destroymessage', data);
+        });
+    });
 };
+
+//For messags on notes
+
+//This is bad practice, use message and post for create delete for deletion
+// Save incoming message to message pool, then broadcast it
+router.post('/make-comment', usersRouter.ensureAuthenticated,
+    (req, res, next) => {
+        messagesModel.postMessage(req.body.from,
+            req.body.namespace, req.body.message)
+            .then(results => { res.status(200).json({}); })
+            .catch(err => { res.status(500).end(err.stack); });
+    });
+// Delete the indicated message
+router.post('/del-message', usersRouter.ensureAuthenticated,
+    (req, res, next) => {
+        messagesModel.destroyMessage(req.body.id, req.body.namespace)
+            .then(results => { res.status(200).json({}); })
+            .catch(err => { res.status(500).end(err.stack); });
+    });
