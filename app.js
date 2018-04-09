@@ -80,7 +80,7 @@ app.use('/users', users.router);
 app.use('/notes', notes);
 
 indexRouter.socketio(io);
-// notes.socketio(io);
+notes.socketio(io);
 
 
 app.use('/vendor/bootstrap', express.static(

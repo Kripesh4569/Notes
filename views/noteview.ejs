@@ -10,10 +10,10 @@
         <% include pageHeader %>
             <div class="row">
                 <div class="col-xs-12">
-                    <h3>
+                    <h3 id="notetitle">
                         <%= note ? note.title : "" %>
                     </h3>
-                    <p>
+                    <p id="notebody">
                         <%= note ? note.body : "" %>
                     </p>
                     <p>Key:
@@ -32,6 +32,26 @@ notekey %>" role="button">Delete</a>
                 </div>
                 <% } %>
                     <% include footer %>
+                        <% if (notekey) { %>
+                            <script src="/socket.io/socket.io.js"></script>
+                            <script>
+                                $(document).ready(function () {
+                                    io('/view').on('noteupdate', function (note) {
+                                        if (note.key === "<%= notekey %>") {
+                                            $('h3#notetitle').empty();
+                                            $('h3#notetitle').text(note.title);
+                                            $('p#notebody').empty();
+                                            $('p#notebody').text(note.body);
+                                        }
+                                    });
+                                    io('/view').on('notedestroy', function (data) {
+                                        if (data.key === "<%= notekey %>") {
+                                            window.location.href = "/";
+                                        }
+                                    });
+                                });
+                            </script>
+                            <% } %>
     </div>
 </body>
 
