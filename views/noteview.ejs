@@ -21,7 +21,7 @@
                     </p>
                 </div>
             </div>
-            <% if (notekey) { %>
+            <% if (notekey && user) { %>
                 <div class="row">
                     <div class="btn-group col-sm-12">
                         <a class="btn btn-default" href="/notes/destroy?key=<%= notekey
